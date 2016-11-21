@@ -6,7 +6,7 @@ import Ace from "../../ace";
 
 export default (<PluginDescription>{
     name: "easy-queue-dodge",
-    version: "1.0.0",
+    version: "1.1.0",
     description: "Adds a button to champ select to dodge without closing the entire client.",
     disableByDefault: true,
     builtInDependencies: {
@@ -33,22 +33,16 @@ const Mixin = (Ember: any, ace: Ace) => ({
         }
 
         Ember.run.scheduleOnce('afterRender', this, function () {
-            const rightButtonsDom = this.$(".bottom-right-buttons")[0];
-            const oldQuitButton = this.$(".quit-button")[0];
-            try {
-                rightButtonsDom.removeChild(oldQuitButton);
-            } catch (NotFoundError) {}
-
-            const div = document.createElement("div");
-            div.className = "quit-button";
-
-            const button = document.createElement("lol-uikit-flat-button");
-            button.textContent = "Quit";
-
-            div.appendChild(button);
-            div.onclick = onQuitClick;
-
-            rightButtonsDom.insertBefore(div, rightButtonsDom.firstChild);
+            this.$(document).on("click", ".quit-button", onQuitClick)
         });
-    }
+    },
+    observeType: Ember.observer("queue.type", function () {
+        Ember.run.scheduleOnce('afterRender', this, function () {
+            if (this.get("queue") && this.get("queue.type") && this.get("queue.type") === "TUTORIAL_GAME") {
+                this.set("showQuitButton", false);
+            } else {
+                this.set("showQuitButton", true);
+            }
+        });
+    })
 });
