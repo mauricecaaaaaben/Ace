@@ -188,6 +188,19 @@ export default function(ace: Ace, settings: SettingsAPI) {
                 this.currentGroup = this.groups[0] || null;
             }, () => { /* Do nothing. */ });
         }
+
+        /**
+         * Moves the currently selected group, if one is selected.
+         * No effect if already at the edge.
+         * +1 = down, -1 = up.
+         */
+        moveGroup(dir: number) {
+            if (!this.currentGroup) return;
+            var loc = this.groups.indexOf(this.currentGroup!);
+            if (loc+dir >= this.groups.length || loc+dir < 0) return;
+            this.groups.splice(loc, 1, this.groups[loc+dir]);
+            this.groups.splice(loc+dir, 1, this.currentGroup);
+        }
     };
 
     return ChampionGroupsConfigPanel;

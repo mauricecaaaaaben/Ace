@@ -33,7 +33,7 @@
             flex 0 30px
             display flex
 
-            .plus, .remove, .edit
+            .plus, .remove, .edit, .up, .down
                 cursor pointer
                 width 30px
                 height 30px
@@ -43,7 +43,7 @@
                 background-color #f0e6d2
                 transition background-color 0.3s ease
 
-            .plus:hover, .remove:hover, .edit:hover
+            .plus:hover, .remove:hover, .edit:hover, .up:hover, .down:hover
                 background-color #c8aa6e
             
             .plus
@@ -54,6 +54,12 @@
 
             .remove
                 -webkit-mask-image url('~open-iconic/svg/trash.svg')
+
+            .up
+                -webkit-mask-image url('~open-iconic/svg/chevron-top.svg')
+
+            .down
+                -webkit-mask-image url('~open-iconic/svg/chevron-bottom.svg')
 
     .contents
         flex 1
