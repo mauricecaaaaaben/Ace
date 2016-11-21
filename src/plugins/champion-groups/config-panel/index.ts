@@ -29,6 +29,8 @@ export default function(ace: Ace, settings: SettingsAPI) {
         errored: boolean;
         error: string | null;
 
+        filter: string;
+
         data() {
             // Clone the groups array.
             const groups = settings.get("championGroups.groups", []).slice();
@@ -40,7 +42,8 @@ export default function(ace: Ace, settings: SettingsAPI) {
                 champions: [],
                 loading: true,
                 errored: false,
-                error: null
+                error: null,
+                filter: ""
             };
         }
 
@@ -86,6 +89,13 @@ export default function(ace: Ace, settings: SettingsAPI) {
          */
         isSelected(champ: { id: number }) {
             return this.currentGroup!.championIds.indexOf(champ.id) !== -1;
+        }
+
+        /**
+         * Checks if the specified champion should be shown based on the user's search.
+         */
+        isFiltered(champ: { name: string }) {
+            return champ.name.toLowerCase().indexOf(this.filter.toLowerCase()) !== -1;
         }
 
         /**
