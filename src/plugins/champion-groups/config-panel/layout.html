@@ -24,9 +24,11 @@
                 <div class="loading-spinner" v-if="loading"></div>
                 <div class="error" v-if="errored">You need to be logged in to edit champion groups. Sorry :(</div>
             </div>
-
+            <lol-uikit-flat-input v-if="!loading && currentGroup">
+                <input type="text" placeholder="Filter..." v-model="filter">
+            </lol-uikit-flat-input>
             <lol-uikit-scrollable v-if="!loading && currentGroup" overflow-masks="enabled">
-                <lol-uikit-champion-thumbnail @click="toggleChampion(champion)" :name="champion.name" :disabled="!isSelected(champion)" v-for="champion in champions">
+                <lol-uikit-champion-thumbnail @click="toggleChampion(champion)" :name="champion.name" :disabled="!isSelected(champion)" v-for="champion in champions" v-if="isFiltered(champion)">
                     <lol-uikit-thumbnail :disabled="!isSelected(champion)">
                         <img :src="'/lol-game-data/assets/v1/champion-icons/' + champion.id + '.png'">
                     </lol-uikit-thumbnail>
