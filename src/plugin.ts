@@ -22,16 +22,22 @@ export interface PluginDescription {
     description: string;
 
     /**
-     * The plugins that this plugin depends upon.
-     * Follows the format { PLUGIN_NAME: SEMVER }
-     */
-    dependencies?: { [key: string]: string };
-
-    /**
      * If this is set to true, this plugin is disabled
      * by default and needs to be manually enabled.
      */
     disableByDefault?: boolean;
+
+    /**
+     * A list of images/videos that should be included in the
+     * documentation for this plugin.
+     */
+    media?: { image: string, url?: string }[];
+
+    /**
+     * The plugins that this plugin depends upon.
+     * Follows the format { PLUGIN_NAME: SEMVER }
+     */
+    dependencies?: { [key: string]: string };
 
     /**
      * The native dependencies that this plugin requires in order to function.

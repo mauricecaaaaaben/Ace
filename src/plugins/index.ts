@@ -16,7 +16,7 @@ import FancySelect from "./fancy-select";
 import RecentlyPlayed from "./recently-played";
 import EasyQueueDodge from "./easy-queue-dodge";
 
-const PLUGINS: PluginDescription[] = [
+export const PLUGINS: PluginDescription[] = [
     Settings,
     Changelog,
     HideMobile,

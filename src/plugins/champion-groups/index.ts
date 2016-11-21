@@ -19,6 +19,10 @@ export default (<PluginDescription>{
     name: "champion-groups",
     version: "1.3.0",
     description: "Adds custom champion group filters for champion select.",
+    media: [
+        { image: "http://i.thijsmolendijk.nl/H6Oov.png" },
+        { image: "http://i.thijsmolendijk.nl/Pz7Lw.png" }
+    ],
     dependencies: {
         "settings": "^1.0.0"
     },
