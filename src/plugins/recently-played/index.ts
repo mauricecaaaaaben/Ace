@@ -14,7 +14,7 @@ export default (<PluginDescription>{
     description: "Adds a recently played tab that allows you to see and invite anyone you recently played with.",
     disableByDefault: true,
     builtinDependencies: {
-        "rcp-fe-lol-social": "~1.0.653-any"
+        "rcp-fe-lol-social": "1.0.693-hotfix01"
     },
     setup() {
         let unregisterRoster = this.hook("template-content", (doc: DocumentFragment) => {
@@ -64,13 +64,13 @@ export default (<PluginDescription>{
 
             proto.onRecentDragStart = function(event: DragEvent, member: any) {
                 const dataTransfer = event.dataTransfer;
-                
+
                 dataTransfer.setData("application/riot.roster-member+json", JSON.stringify({
                     type: "roster-member",
                     id: member.summonerId,
                     name: member.summonerName
                 }));
-                
+
                 dataTransfer.setData("application/riot.chat-user+json", JSON.stringify({
                     type: "chat-user",
                     id: member.summonerId,
